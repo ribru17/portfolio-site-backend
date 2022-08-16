@@ -12,7 +12,6 @@ var nodemailer_1 = __importDefault(require("nodemailer"));
 dotenv_1.default.config({ path: path_1.default.join(__dirname, './../.env') }); // starts from 'dist' folder
 var PORT = process.env.PORT || 8000;
 var app = (0, express_1.default)();
-console.log('h');
 var transporter = nodemailer_1.default.createTransport({
     service: 'gmail',
     auth: {
@@ -32,7 +31,7 @@ app.post('/api/contact', function (req, res) {
     var mail = {
         from: process.env.EMAIL_ADDRESS,
         to: process.env.EMAIL_ADDRESS,
-        subject: "Web message from ".concat(req.body.name),
+        subject: "Web message from " + req.body.name,
         text: req.body.message
     };
     transporter.sendMail(mail, function (err, data) {
@@ -49,5 +48,5 @@ app.post('/api/contact', function (req, res) {
 //     res.sendFile(path.join(__dirname, '../../client/build/index.html'))
 // })
 app.listen(PORT, function () {
-    console.log("listening on ".concat(PORT));
+    console.log("listening on " + PORT);
 });
