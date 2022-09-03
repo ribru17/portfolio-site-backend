@@ -5,7 +5,6 @@ import path from 'path'
 import nodemailer from 'nodemailer'
 import Mail from 'nodemailer/lib/mailer'
 
-// dotenv.config({path: __dirname + './../.env'}) // starts from 'dist' folder
 dotenv.config({path: path.join(__dirname, './../.env')}) // starts from 'dist' folder
 const PORT = process.env.PORT || 8000
 const app = express()
@@ -26,7 +25,6 @@ transporter.verify((error, success) => {
 
 app.use(cors())
 app.use(express.json())
-// app.use(express.static(path.join(__dirname, '../../client/build')))
 
 app.post('/api/contact', (req, res) => {
     const mail: Mail.Options = {
@@ -44,10 +42,6 @@ app.post('/api/contact', (req, res) => {
         }
     })
 })
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../../client/build/index.html'))
-// })
 
 app.listen(PORT, () => {
     console.log(`listening on ${PORT}`)
